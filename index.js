@@ -1,7 +1,8 @@
+require('dotenv').config();
 const app = require('./app');
 const http = require('http');
 
-let port = process.env.port || '3001';
+let port = process.env.PORT || '3001';
 app.set('port', port);
 
 let server = http.createServer(app);
