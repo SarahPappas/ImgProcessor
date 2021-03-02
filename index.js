@@ -1,6 +1,7 @@
 require('dotenv').config();
 const app = require('./app');
 const http = require('http');
+const startupServer = require('./startup-server');
 
 let port = process.env.PORT || '3001';
 app.set('port', port);
@@ -22,3 +23,5 @@ const onError = (error) => {
 server.listen(port);
 server.on('errpr', onError);
 server.on('listening', onListening);
+
+startupServer();
