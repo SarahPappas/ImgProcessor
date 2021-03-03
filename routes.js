@@ -25,14 +25,6 @@ const toBase64 = require('./img-converter');
 router.post('/processImg', (req, res, next) => {
    console.log('request received');
    console.log('body', req.body);
-   let parsedJson;
-   try {
-      parsedJson = JSON.parse(req.body); // can throw error
-   } catch {
-      console.error("Json cannot be parsed.");
-      res.json("There was an error parsing the JSON");
-      return;
-   }
 
    console.log("parsed Json", parsedJson.img);
    const file = null; 
