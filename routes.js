@@ -46,36 +46,37 @@ router.post('/processImg', (req, res, next) => {
    //       console.log("registry", registry);
    //       const commandfn = registry.get(command);
    //       console.log("filepath", filepath);
-   //       commandfn(filepath, params);
+   //       await commandfn(filepath, params);
    //       console.log("next");
    //    }
 
    // });
+  
 
-   function runNextCommand(i) {
-      const transform = transformation[i];
-      for (const prop in transform) {
-         const command = prop;
-         const params = transform[command];
-         const commandfn = registry.get(command);
-         console.log("filepath", filepath);
-         commandfn(filepath, params)
-         .then(() => {
-            i++;
-            if (i < transformation.length) {
-               runNextCommand(i);
-            } else { 
-               return;
-            }
-         });
-      }
-   };
+   // function runNextCommand(i) {
+   //    const transform = transformation[i];
+   //    for (const prop in transform) {
+   //       const command = prop;
+   //       const params = transform[command];
+   //       const commandfn = registry.get(command);
+   //       console.log("filepath", filepath);
+   //       commandfn(filepath, params)
+   //       .then(() => {
+   //          i++;
+   //          if (i < transformation.length) {
+   //             runNextCommand(i);
+   //          } else { 
+   //             return;
+   //          }
+   //       });
+   //    }
+   // };
 
-   const runTransformations = new Promise((resolve, reject) => {
-      return runNextCommand(0);
-   });
+   // const runTransformations = new Promise((resolve, reject) => {
+   //    return runNextCommand(0);
+   // });
    
-   runTransformations.then(() => {
+   runTransformation(transformation, filepath).then(() => {
       console.log("done!");
       res.json({'img': toBase64(filepath)});
    })
@@ -88,5 +89,25 @@ router.post('/processImg', (req, res, next) => {
 
    // res.json('Image processed!');
 });
+
+async function runTransformation(transformation, filepath) {
+   for (transform of transformation) {
+      console.log("tranform", transform);
+
+      for (const prop in transform) {
+         const command = prop;
+         const params = transform[command];
+
+         console.log("calling " + command + " with params " + params);
+         console.log("registry", registry);
+         const commandfn = registry.get(command);
+         console.log("filepath", filepath);
+         await commandfn(filepath, params);
+         console.log("next");
+      }
+
+   };
+   return filepath;
+}
 
 module.exports = router;
