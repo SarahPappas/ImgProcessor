@@ -2,5 +2,5 @@
 
 curl --header "Content-Type: application/json"\
     --request POST\
-    --data '{"img": "'$(base64 ~/Downloads/super-small-test.png)'"}'\
+    --data '{"img": "'$(base64 ~/Downloads/super-small-test.png)'", "transformation": [{"flip": null}]}'\
     http://localhost:3000/processImg
