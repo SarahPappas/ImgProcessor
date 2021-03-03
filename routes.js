@@ -25,6 +25,11 @@ const toBase64 = require('./img-converter');
 router.post('/processImg', (req, res, next) => {
    console.log('request received');
    console.log('body', req.body);
+   
+   if (!req.body.img || !req.body.transformation) {
+      console.error("Did not receive enough arguments", req.body);
+      res.json("Not enough arguments were received");
+   }
 
    console.log("parsed Json", parsedJson.img);
    const file = null; 
