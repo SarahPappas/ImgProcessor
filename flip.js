@@ -5,7 +5,7 @@ function flip(filePath) {
         throw "flip is missing file path";
     }
 
-    gm(filePath).crop(parms[0], parms[1]);
+    gm(filePath).flip();
 }
 
 module.exports = flip;
