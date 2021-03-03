@@ -1,7 +1,7 @@
 // https://github.com/aheckmann/gm
 let fs = require('fs')
 
-function base64ImageToFile (base64ImgString) {
+function base64ImageToFile(base64ImgString) {
    
     // tokenize the data since the 64 encoded data look like this "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAKAC"
     const base64ImgStringSections = base64ImgString.split(',');

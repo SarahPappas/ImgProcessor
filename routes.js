@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const registry = require('./command-registry');
-const base64ImageToFile = require('./img-converter');
-const toBase64 = require('./img-converter');
+const { base64ImageToFile, toBase64} = require('./img-converter');
 
 
 /* JSON request format {
