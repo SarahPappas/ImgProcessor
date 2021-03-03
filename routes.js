@@ -31,13 +31,14 @@ router.post('/processImg', (req, res, next) => {
       res.json("Not enough arguments were received");
    }
 
-   console.log("parsed Json", parsedJson.img);
+
    const file = null; 
-   base64ImageToFile(img)
+   base64ImageToFile(req.body.img)
    .then((file) => {
+      const transformation = req.body.transformation;
       transformation.forEach(transform => {
          let {command, params} = JSON.parse(transform);
-         file = registry[comand].call(file, params);
+         file = registry[command].call(file, params);
       });
    })
    .then(() => {

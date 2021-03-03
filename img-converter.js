@@ -7,12 +7,13 @@ function base64ImageToFile (base64ImgString) {
     const base64ImgStringSections = base64ImgString.split(',');
     const imgByteArray = Base64.decode(base64ImgStringSections[1]);
     const inputStream = new ByteArrayInputStream(imgByteArray);
+    console.log("img byte array", inputStream);
 
     //Find out image type
     let mimeType = null;[              ]
     let fileExtension = null;
     try {
-        mimeType = URLConnection.guessContentTypeFromStream(inputSTream); //mimeType is something like "image/jpeg"
+        mimeType = URLConnection.guessContentTypeFromStream(inputStream); //mimeType is something like "image/jpeg"
         const words = mimeType.split('/');
         fileExtension = words[1];
     } catch (error){
