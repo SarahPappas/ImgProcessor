@@ -10,7 +10,7 @@ let server = http.createServer(app);
 
 const onListening = () => {
     let addr = server.address();
-    console.log('listenting on, ' +  addr + ' at port ' + port);
+    console.log('listenting on, ' + addr + ' at port ' + port);
 }
 
 const onError = (error) => {
