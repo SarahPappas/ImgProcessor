@@ -9,7 +9,11 @@ function resize(filePath, params) {
         throw "invalid number of parameters for crop";
     }
 
-    gm(filePath).resize(parms[0], parms[1]);
+    gm(filePath).resize(parms[0], parms[1])
+    .write(filePath, function (err) {
+        if(err) console.log(err);
+        console.log("resized!")
+    });
 }
 
 module.exports = resize;

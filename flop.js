@@ -5,7 +5,11 @@ function flop(filePath, params) {
         throw "flop is missing file path";
     } 
 
-    gm(filePath).flop();
+    gm(filePath).flop()
+    .write(filePath, function (err) {
+        if(err) console.log(err);
+        console.log("flopped!")
+    });
 }
 
 module.exports = flop;
