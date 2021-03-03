@@ -30,7 +30,7 @@ router.post('/processImg', (req, res, next) => {
       res.json("Not enough arguments were received");
    }
 
-   const filepat = base64ImageToFile(req.body.img, req.body.extension)
+   const filepath = base64ImageToFile(req.body.img, req.body.extension)
 
    const transformation = req.body.transformation;
    transformation.forEach(transform => {
@@ -41,7 +41,9 @@ router.post('/processImg', (req, res, next) => {
          const params = transform[command];
 
          console.log("calling " + command + " with params " + params);
-         file = registry[command].call(file, params);
+         console.log("registry", registry);
+         const commandfn = registry.get(command);
+         file = commandfn.call(filepath, params);
       }
    });
 
