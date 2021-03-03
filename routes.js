@@ -30,22 +30,26 @@ router.post('/processImg', (req, res, next) => {
       res.json("Not enough arguments were received");
    }
 
+   const filepat = base64ImageToFile(req.body.img, req.body.extension)
 
-   const file = null; 
-   base64ImageToFile(req.body.img, req.body.extension)
-   .then((file) => {
-      const transformation = req.body.transformation;
-      transformation.forEach(transform => {
-         let {command, params} = JSON.parse(transform);
+   const transformation = req.body.transformation;
+   transformation.forEach(transform => {
+      console.log("tranform", transform);
+
+      for (const prop in transform) {
+         const command = prop;
+         const params = transform[command];
+
+         console.log("calling " + command + " with params " + params);
          file = registry[command].call(file, params);
-      });
-   })
-   .then(() => {
-      res.json({'img': toBase64(file)});
-   }).catch((err) => {
-      console.error(err);
-      res.json({'error': 'there was an error processing your image'});
+      }
    });
+
+   res.json({'img': toBase64(file)});
+   // }).catch((err) => {
+   //    console.error(err);
+   //    res.json({'error': 'there was an error processing your image'});
+   // });
 
    // res.json('Image processed!');
 });
