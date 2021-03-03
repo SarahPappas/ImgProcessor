@@ -49,7 +49,7 @@ router.post('/processImg', (req, res, next) => {
       }
    });
 
-   res.json({'img': toBase64(file)});
+   res.json({'img': toBase64(filepath)});
    // }).catch((err) => {
    //    console.error(err);
    //    res.json({'error': 'there was an error processing your image'});
