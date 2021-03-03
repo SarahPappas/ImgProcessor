@@ -5,7 +5,7 @@
 
 curl --header "Content-Type: application/text"\
     --request POST\
-    --data @./imgFileEncoded.txt\
+    --data '{"img": "'$(base64 ~/Downloads/super-small-test.png)'"}'\
     http://localhost:3000/processImg
 
 #curl --request POST --header "Content-Type: application/json" --data '{"img": "test"}' http://localhost:3000/processImg
