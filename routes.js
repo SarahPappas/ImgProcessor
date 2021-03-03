@@ -25,14 +25,14 @@ router.post('/processImg', (req, res, next) => {
    console.log('request received');
    console.log('body', req.body);
    
-   if (!req.body.img || !req.body.transformation) {
+   if (!req.body.img || !req.body.extension || !req.body.transformation) {
       console.error("Did not receive enough arguments", req.body);
       res.json("Not enough arguments were received");
    }
 
 
    const file = null; 
-   base64ImageToFile(req.body.img)
+   base64ImageToFile(req.body.img, req.body.extension)
    .then((file) => {
       const transformation = req.body.transformation;
       transformation.forEach(transform => {
