@@ -33,23 +33,54 @@ router.post('/processImg', (req, res, next) => {
    const filepath = base64ImageToFile(req.body.img, req.body.extension);
    console.log(filepath);
 
+   // TODO: Command calls are async, how to for loop to wait fo async call to finish for next iteration.
    const transformation = req.body.transformation;
-   transformation.forEach(transform => {
-      console.log("tranform", transform);
+   // transformation.forEach(transform => {
+   //    console.log("tranform", transform);
 
+   //    for (const prop in transform) {
+   //       const command = prop;
+   //       const params = transform[command];
+
+   //       console.log("calling " + command + " with params " + params);
+   //       console.log("registry", registry);
+   //       const commandfn = registry.get(command);
+   //       console.log("filepath", filepath);
+   //       commandfn(filepath, params);
+   //       console.log("next");
+   //    }
+
+   // });
+
+   function runNextCommand(i) {
+      const transform = transformation[i];
       for (const prop in transform) {
          const command = prop;
          const params = transform[command];
-
-         console.log("calling " + command + " with params " + params);
-         console.log("registry", registry);
          const commandfn = registry.get(command);
          console.log("filepath", filepath);
-         file = commandfn(filepath, params);
+         commandfn(filepath, params)
+         .then(() => {
+            i++;
+            if (i < transformation.length) {
+               runNextCommand(i);
+            } else { 
+               return;
+            }
+         });
       }
-   });
+   };
 
-   res.json({'img': toBase64(filepath)});
+   const runTransformations = new Promise((resolve, reject) => {
+      return runNextCommand(0);
+   });
+   
+   runTransformations.then(() => {
+      console.log("done!");
+      res.json({'img': toBase64(filepath)});
+   })
+
+  
    // }).catch((err) => {
    //    console.error(err);
    //    res.json({'error': 'there was an error processing your image'});
