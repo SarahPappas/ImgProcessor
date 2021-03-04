@@ -1,6 +1,6 @@
 gm = require('gm');
 
-function flop(filePath, params) { 
+async function flop(filePath) { 
     if (!filePath) {
         throw "flop is missing file path";
     } 
