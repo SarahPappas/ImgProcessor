@@ -5,7 +5,7 @@ async function rotate(filePath, params) {
         throw "flip is missing file path";
     }
     
-    if (!params && !(typeof params === String || typeof params === Number)) {
+    if (!params || !(typeof params === 'string' || typeof params === 'number' && params != NaN || params != Infinity)) {
         throw "invalid parameters for rotate";
     }
 
