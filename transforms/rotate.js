@@ -2,7 +2,7 @@ gm = require('gm');
 
 async function rotate(filePath, params) { 
     if (!filePath) {
-        throw "flip is missing file path";
+        throw "rotate is missing file path";
     }
     
     if (!params || !(typeof params === 'string' || typeof params === 'number' && params != NaN || params != Infinity)) {

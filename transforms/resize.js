@@ -2,7 +2,7 @@ gm = require('gm');
 
 async function resize(filePath, params) { 
     if (!filePath) {
-        throw "flip is missing file path";
+        throw "resize is missing file path";
     }
     
     if (params.length != 2) {
