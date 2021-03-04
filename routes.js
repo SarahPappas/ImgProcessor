@@ -6,7 +6,7 @@ const { base64ImageToFile, toBase64} = require('./img-converter');
 
 /* JSON request format {
    img: base64 encoded string
-   transformation: [{"resize": [w, h]}, {"flip": null}, {"flop": null}]
+   transformation: [{"resize": [w, h]}, {"flip": null}, {"flop": null}, {"rotate": right positive rotation degrees, left negative}]
 
    JSON response format {
       img: base64 encoded string

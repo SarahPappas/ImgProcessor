@@ -5,12 +5,23 @@ async function rotate(filePath, params) {
         throw "flip is missing file path";
     }
     
-    if (!params) {
-        throw "invalid number of parameters for rotate";
+    if (!params && !(typeof params === String || typeof params === Number)) {
+        throw "invalid parameters for rotate";
     }
 
     return new Promise((resolve, reject) => {
-        gm(filePath).rotate("#00FFFFFF", params)
+        let rotateDeg = params;
+        if (typeof params === 'string') {
+            if (params.toLowerCase() === "left") {
+                rotateDeg = -90;
+            } else if (params.toLowerCase() === "right") {
+                rotateDeg = 90;
+            } else {
+                throw "Invalid arguement";
+            }
+        }
+
+        gm(filePath).rotate("#00000000", rotateDeg)
         .write(filePath, function (err) {
             if(err) {
                 console.log(err);

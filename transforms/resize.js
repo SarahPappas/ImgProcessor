@@ -10,7 +10,7 @@ async function resize(filePath, params) {
     }
 
     return new Promise((resolve, reject) => {
-        gm(filePath).resize(parms[0], parms[1])
+        gm(filePath).resize(parms[0], params[1])
         .write(filePath, function (err) {
             if(err) {
                 console.log(err);
