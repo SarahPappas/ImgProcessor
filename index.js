@@ -1,7 +1,7 @@
 require('dotenv').config();
 const app = require('./app');
 const http = require('http');
-const startupServer = require('./startup-server');
+const startupServer = require('./startup-registration.js');
 
 let port = process.env.PORT || '3001';
 app.set('port', port);

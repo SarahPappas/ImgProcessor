@@ -1,13 +1,14 @@
-// https://github.com/aheckmann/gm
-let fs = require('fs')
+const fs = require('fs');
+const { v4: uuid } = require('uuid');
+
 
 function base64ImageToFile(base64ImgString, extension) {
     const buf = Buffer.from(base64ImgString, 'base64');
 
-    const path = "temp." + extension;
-    fs.writeFileSync(path, buf);
-    console.log("file written");
-    return path;
+    const filename = uuid() + "." + extension;
+    fs.writeFileSync(filename, buf);
+    console.log("file written, with filename: ", filename);
+    return filename;
 }
 
 function toBase64(filepath) {
