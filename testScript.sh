@@ -2,7 +2,7 @@
 
 curl --header "Content-Type: application/json"\
     --request POST\
-    --data '{"img": "'$(base64 ~/Downloads/super-small-test.png)'", "extension": "png", "transformation": [{"greyscale": null}, {"flip": null}, {"flop": null}] }'\
+    --data '{"img": "'$(base64 ~/Downloads/smaller-test-img.png)'", "extension": "png", "transformation": [{"thumbnail": 75}] }'\
     http://localhost:3000/processImg
 
 # "transformation": [{"flip": null}]
@@ -12,3 +12,5 @@ curl --header "Content-Type: application/json"\
 # "transformation": [{"rotate": -38}]
 # "transformation": [{"resize": [50, 50]}]
 # "transformation": [{"thumbnail": 75}]
+
+# {"greyscale": null}, {"flip": null}, {"flop": null}

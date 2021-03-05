@@ -6,7 +6,7 @@ async function resize(filePath, params) {
     }
     
     if (params.length != 2) {
-        throw "invalid number of parameters for crop";
+        throw "invalid number of parameters for resize";
     }
 
     return new Promise((resolve, reject) => {
