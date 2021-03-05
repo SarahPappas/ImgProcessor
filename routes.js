@@ -12,7 +12,6 @@ const { base64ImageToFile, toBase64, cleanUpFile} = require('./img-converter');
       img: base64 encoded string
    }
 } */
-
 router.post('/processImg', (req, res, next) => {
    console.log('request received');
    console.log('body', req.body);
@@ -20,6 +19,7 @@ router.post('/processImg', (req, res, next) => {
    if (!req.body.img || !req.body.extension || !req.body.transformation) {
       console.error("Did not receive enough arguments", req.body);
       res.json("Not enough arguments were received");
+      return;
    }
 
    const filepath = base64ImageToFile(req.body.img, req.body.extension);
