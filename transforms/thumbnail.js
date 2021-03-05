@@ -10,8 +10,7 @@ async function thumbnail(filePath, params) {
     }
 
     return new Promise((resolve, reject) => {
-        gm(filePath).resize(params, params)
-        .write(filePath, function (err) {
+        gm(filePath).thumb(params, params, filePath, 100, function (err) {
             if(err) {
                 console.log(err);
                 reject(err);

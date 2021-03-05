@@ -28,7 +28,7 @@ router.post('/processImg', (req, res, next) => {
    runTransformation(transformation, filepath).then(() => {
       console.log("done!");
       const imgString = toBase64(filepath);
-      cleanUpFile(filepath);
+      // cleanUpFile(filepath);
       res.json({'img': imgString});
    }).catch((err) => {
       cleanUpFile(filepath);
