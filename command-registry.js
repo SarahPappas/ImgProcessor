@@ -1,15 +1,15 @@
-// Decouple the networking from image processing
 class CommandRegistry {
     constructor() {
-      this._registery = new Map();
+      this._registry = new Map();
     }
 
     add(commandName, fn) {
-        this._registery.set(commandName, fn);
+        this._registry.set(commandName, fn);
     }
 
+    // TODO change to run
     get(commandName) {
-        return this._registery.get(commandName);
+        return this._registry.get(commandName);
     }
 }
 
