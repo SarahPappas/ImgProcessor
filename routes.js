@@ -23,9 +23,6 @@ router.post('/processImg', (req, res, next) => {
    }
 
    const filepath = base64ImageToFile(req.body.img, req.body.extension);
-   console.log(filepath);
-
-   // TODO: Command calls are async, how to for loop to wait fo async call to finish for next iteration.
    const transformation = req.body.transformation;
    
    runTransformation(transformation, filepath).then(() => {
