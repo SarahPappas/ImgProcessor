@@ -13,14 +13,6 @@ const { base64ImageToFile, toBase64} = require('./img-converter');
    }
 } */
 
-// •	xFlip horizontal and vertical
-// •	Rotate +/- n degrees
-// •	Convert to grayscale
-// •	xResize
-// •	Generate a thumbnail
-// •	Rotate left
-// •	Rotate right
-
 router.post('/processImg', (req, res, next) => {
    console.log('request received');
    console.log('body', req.body);

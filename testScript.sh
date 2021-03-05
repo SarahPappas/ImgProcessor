@@ -11,3 +11,4 @@ curl --header "Content-Type: application/json"\
 # "transformation": [{"rotate": "left"}]
 # "transformation": [{"rotate": -38}]
 # "transformation": [{"resize": [50, 50]}]
+# "transformation": [{"thumbnail": 75}]
