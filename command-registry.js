@@ -13,7 +13,7 @@ class CommandRegistry {
     }
 }
 
-// Singleton
+// Singleton    
 const registry = new CommandRegistry();
 Object.freeze(registry);
 
