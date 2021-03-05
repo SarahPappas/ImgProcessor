@@ -7,13 +7,13 @@ class CommandRegistry {
         this._registry.set(commandName, fn);
     }
 
-    // TODO change to run
-    get(commandName) {
-        return this._registry.get(commandName);
+    async run(commandName, filepath, params) {
+        const command = this._registry.get(commandName);
+        return command(filepath, params);
     }
 }
 
-// Make singleton
+// Singleton
 const registry = new CommandRegistry();
 Object.freeze(registry);
 
