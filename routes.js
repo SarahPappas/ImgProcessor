@@ -42,16 +42,12 @@ router.post('/processImg', (req, res, next) => {
 
 async function runTransformation(transformation, filepath) {
    for (transform of transformation) {
-      console.log("tranform", transform);
-
       for (const prop in transform) {
          const command = prop;
          const params = transform[command];
 
          console.log("calling " + command + " with params " + params);
-         console.log("registry", registry);
          const commandfn = registry.get(command);
-         console.log("filepath", filepath);
          await commandfn(filepath, params);
          console.log("next");
       }
