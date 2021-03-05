@@ -49,7 +49,6 @@ async function runTransformation(transformation, filepath) {
          console.log("calling " + command + " with params " + params);
          const commandfn = registry.get(command);
          await commandfn(filepath, params);
-         console.log("next");
       }
 
    };
