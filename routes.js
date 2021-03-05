@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const registry = require('./command-registry');
-const { base64ImageToFile, toBase64} = require('./img-converter');
+const { base64ImageToFile, toBase64, cleanUpFile} = require('./img-converter');
 
 
 /* JSON request format {
@@ -30,8 +30,11 @@ router.post('/processImg', (req, res, next) => {
    
    runTransformation(transformation, filepath).then(() => {
       console.log("done!");
-      res.json({'img': toBase64(filepath)});
+      const imgString = toBase64(filepath);
+      cleanUpFile(filepath);
+      res.json({'img': imgString});
    }).catch((err) => {
+      cleanUpFile(filepath);
       console.error(err);
       res.json({'error': 'there was an error processing your image'});
    });

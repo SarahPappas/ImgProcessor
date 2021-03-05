@@ -23,4 +23,8 @@ function toBase64(filepath) {
     return base64ImgString;
 }
 
-module.exports = {base64ImageToFile, toBase64};
+function cleanUpFile(filepath) {
+    fs.rmSync(filepath);
+}
+
+module.exports = {base64ImageToFile, toBase64, cleanUpFile};
