@@ -22,10 +22,13 @@ router.post('/processImg', (req, res, next) => {
       return;
    }
 
-   const filepath = base64ImageToFile(req.body.img, req.body.extension);
    const transformation = req.body.transformation;
-   
-   runTransformation(transformation, filepath).then(() => {
+   let filepath = null;
+   base64ImageToFile(req.body.img, req.body.extension)
+   .then(fp => {
+      filepath = fp;
+      return runTransformation(transformation, filepath);
+   }).then(() => {
       console.log("done!");
       return toBase64(filepath);
    }).then(imgString => {

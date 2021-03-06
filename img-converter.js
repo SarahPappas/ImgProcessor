@@ -1,19 +1,28 @@
 const fs = require('fs');
 const { v4: uuid } = require('uuid');
 
+const ERROR_1 = 'no file path provided';
 
-function base64ImageToFile(base64ImgString, extension) {
+async function base64ImageToFile(base64ImgString, extension) {
     const buf = Buffer.from(base64ImgString, 'base64');
+    const filepath = uuid() + '.' + extension;
 
-    const filename = uuid() + "." + extension;
-    fs.writeFileSync(filename, buf);
-    console.log("file written, with filename: ", filename);
-    return filename;
+    return new Promise((resolve, reject) => {
+        fs.promises.writeFile(filepath, buf)
+        .then(() => {
+            console.log('file written, with filename: ', filepath);
+            resolve(filepath);
+        })
+        .catch((err) => {
+            console.error(err);
+            reject(err);
+        })
+    })
 }
 
 async function toBase64(filepath) {
     if (!filepath) {
-        throw 'no file path provided';
+        throw ERROR_1;
     }
 
     return new Promise((resolve, reject) => {
@@ -27,11 +36,15 @@ async function toBase64(filepath) {
             console.error(err);
             reject(err);
         })
-    })
+    });
 }
 
 async function cleanUpFile(filepath) {
+    if (!filepath) {
+        throw ERROR_1;
+    }
+
     return fs.promises.rm(filepath);
 }
 
-module.exports = {base64ImageToFile, toBase64, cleanUpFile};
+module.exports = { base64ImageToFile, toBase64, cleanUpFile };
