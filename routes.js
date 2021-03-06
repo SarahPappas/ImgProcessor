@@ -31,8 +31,8 @@ router.post('/processImg', (req, res, next) => {
       // cleanUpFile(filepath);
       res.json({'img': imgString});
    }).catch((err) => {
-      cleanUpFile(filepath);
       console.error(err);
+      // cleanUpFile(filepath);
       res.json({'error': 'there was an error processing your image'});
    });
 });

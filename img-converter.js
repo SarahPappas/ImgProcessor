@@ -23,8 +23,16 @@ function toBase64(filepath) {
     return base64ImgString;
 }
 
-function cleanUpFile(filepath) {
-    fs.rmSync(filepath);
+async function cleanUpFile(filepath) {
+    return new Promise((resolve, reject) => {
+        fs.rm(filepath, (err) => {
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            resolove();
+        });
+    });
 }
 
 module.exports = {base64ImageToFile, toBase64, cleanUpFile};
