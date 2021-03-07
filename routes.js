@@ -6,7 +6,7 @@ const { base64ImageToFile, toBase64, cleanUpFile} = require('./img-converter');
 
 /* JSON request format {
    img: base64 encoded string
-   transformation: [{"resize": [w, h]}, {"flip": null}, {"flop": null}, {"rotate": right positive rotation degrees, left negative}]
+   transforms: [{"resize": [w, h]}, {"flip": null}, {"flop": null}, {"rotate": right positive rotation degrees, left negative}]
 
    JSON response format {
       img: base64 encoded string
@@ -16,18 +16,18 @@ router.post('/processImg', (req, res, next) => {
    console.log('request received');
    console.log('body', req.body);
    
-   if (!req.body.img || !req.body.transformation) {
+   if (!req.body.img || !req.body.transforms) {
       console.error("Did not receive enough arguments", req.body);
       res.json("Not enough arguments were received");
       return;
    }
 
-   const transformation = req.body.transformation;
+   const transforms = req.body.transforms;
    let filepath = null;
    base64ImageToFile(req.body.img)
    .then(fp => {
       filepath = fp;
-      return runTransformation(transformation, filepath);
+      return runTransforms(transforms, filepath);
    }).then(() => {
       console.log("done!");
       return toBase64(filepath);
@@ -41,8 +41,8 @@ router.post('/processImg', (req, res, next) => {
    });
 });
 
-async function runTransformation(transformation, filepath) {
-   for (transform of transformation) {
+async function runTransforms(transforms, filepath) {
+   for (transform of transforms) {
       for (const prop in transform) {
          const command = prop;
          const params = transform[command];
