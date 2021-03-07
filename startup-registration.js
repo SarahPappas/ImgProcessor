@@ -3,7 +3,7 @@ const resize = require('./transforms/resize');
 const flip = require('./transforms/flip');
 const flop = require('./transforms/flop');
 const rotate = require('./transforms/rotate');
-const grayscale = require('./transforms/greyscale');
+const grayscale = require('./transforms/grayscale');
 const thumbnail = require('./transforms/thumbnail');
 
 function startupServer() {
