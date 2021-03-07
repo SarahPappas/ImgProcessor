@@ -1,8 +1,8 @@
 gm = require('gm');
 
-async function greysale(filePath) { 
+async function grayscale(filePath) { 
     if (!filePath) {
-        throw "greyscale is missing file path";
+        throw "grayscale is missing file path";
     } 
 
     return new Promise((resolve, reject) => {
@@ -12,11 +12,11 @@ async function greysale(filePath) {
                 console.log(err);
                 reject(err);
             }
-            console.log("greyscaled!")
+            console.log("grayscaled!")
             resolve();
         });
     });
 
 }
 
-module.exports = greysale;
+module.exports = grayscale;
