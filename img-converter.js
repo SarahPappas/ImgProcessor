@@ -3,9 +3,9 @@ const { v4: uuid } = require('uuid');
 
 const ERROR_1 = 'no file path provided';
 
-async function base64ImageToFile(base64ImgString, extension) {
+async function base64ImageToFile(base64ImgString) {
     const buf = Buffer.from(base64ImgString, 'base64');
-    const filepath = uuid() + '.' + extension;
+    const filepath = uuid();
 
     return new Promise((resolve, reject) => {
         fs.promises.writeFile(filepath, buf)
