@@ -14,7 +14,7 @@ npm install
 
 run node index.js
 
-To send and image with transforms, update the file client-request-script.sh
+To send and image with transforms, update the file client-request-script.sh and run.
 
 To decode the response run client-decode-response.sh and pass the Base64 encoded img string recieved from running client-request-script
 
