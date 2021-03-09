@@ -21,9 +21,13 @@ To decode the response run client-decode-response.sh and pass the Base64 encoded
 Server API:
 
 Endpoint: http://[baseurl]/processImg
+
 Request type: POST
+
 Request header: "Content-Type: application/json"
+
 Request body: Request JSON; described below
+
 Supported image formats: JPEG, GIF, PNG, TIFF, SVG
 
 JSON Request Format 
