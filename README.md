@@ -8,7 +8,7 @@ Processes images with the following tansforms:
 - resize
 - grayscale
 
-To Run:
+### To Run:
 
 npm install 
 
@@ -18,7 +18,7 @@ To send and image with transforms, update the file client-request-script.sh
 
 To decode the response run client-decode-response.sh and pass the Base64 encoded img string recieved from running client-request-script
 
-Server API:
+### Server API:
 
 Endpoint: http://[baseurl]/processImg
 
