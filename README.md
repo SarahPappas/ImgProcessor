@@ -8,6 +8,7 @@ Processes images with the following tansforms:
 - resize
 - grayscale
 
+To Run:
 npm install 
 
 run node index.js
