@@ -10,8 +10,8 @@ curl --header "Content-Type: application/json"\
 # "transforms": [{"name": "grayscale"}]
 # "transforms": [{"name": "rotate", "direction": "left"}]
 # "transforms": [{"name": "rotate", "direction": "right"}]
-# "transforms": [{"name": "rotate", "direction": "-38"}]
-# "transforms": [{"name": "rotate", "direction": "78"}]
+# "transforms": [{"name": "rotate", "degrees": -38}]
+# "transforms": [{"name": "rotate", "degrees": 78}]
 # "transforms": [{"name": "resize", "dimensions": [50, 50]}]
 # "transforms": [{"name": thumbnail, "dimension": 75}]
 

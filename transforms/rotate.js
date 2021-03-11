@@ -7,8 +7,8 @@ async function rotate(filePath, params) {
     
     if (!params || 
         params.length < 1 ||
-        !(typeof params[0] === 'string' || 
-        typeof params[0] === 'number' && params[0] != NaN || params[0] != Infinity)) {
+        !(typeof params[0] === 'string' || typeof params[0] === 'number') ||
+        (typeof params[0] === 'number' && (params[0] == NaN || params[0] == Infinity))) {
         throw "invalid parameters for rotate";
     }
 
